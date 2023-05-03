@@ -14,7 +14,7 @@ function Update
 				Write-Warning ($items | Select-Object -Property KB, Title)
 				Install-WindowsUpdate -AcceptAll -install
 				Write-Warning ("--- Installation finished : " + ($items | Select-Object -Property KB))    
-				Write-Warning ($nbUpdateToDo -eq 1) ? "--- Update is finished ---" : "--- Update are finished ---"
+				Write-Warning (($nbUpdateToDo -eq 1) ? "--- Update is finished ---" : "--- Update are finished ---")
 			}
 			catch 
 			{
