@@ -28,7 +28,7 @@ function Update
 				Write-Error "Restart in progress"
 				shutdown.exe /r /t 60 
 			}
-			else 
+			else
 			{ 
 				Write-Warning "--- Not necessary to restart computer"; 
 			}   

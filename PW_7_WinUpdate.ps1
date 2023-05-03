@@ -8,7 +8,6 @@ $dossier = "C:\users\manipulator\Desktop\Script_PS\PWS_v7"
 $rstConnection = pwsh -command "& {. $dossier\TestConnection.ps1;TestConnection }"  
 
 
-
 #Test de la connection
 
 ($rstConnection) ? "Connection succeeded with internet" : "Connection failed - enable to update"
