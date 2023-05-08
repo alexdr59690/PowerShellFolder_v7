@@ -1,8 +1,10 @@
 function Update
 {
+	Write-Warning "Reasearch update...."
 	$update = Get-WindowsUpdate
 	$nbUpdateToDo = $update.count
 
+	Write-Warning ("Number of update found : " + $nbUpdateToDo)
 	if ($nbUpdateToDo -gt 0)
 	{ 
 		Write-Warning "Update is running..."
