@@ -1,7 +1,6 @@
 ﻿# Nom du programme : Mise à jour Windows via PowerShell 7
 # Version du logiciel : 0.2.0
 # Dernière modification : 03/05/2023 13:35
-# Auteur : ADRUT
 ##################################################
 
 $start = Get-Date
