@@ -1,30 +1,30 @@
 function Update
 {
-	Write-Warning "--- Reasearch update...."
-	Write-Warning ("--- Start time " + (Get-Date).ToLongTimeString())
+	Write-Host [(Get-Date).ToLongTimeString()] "Reasearch update"
+	
 	$update = Get-WindowsUpdate
 	$nbUpdateToDo = $update.count
 
-	Write-Warning ("Number of update found : " + $nbUpdateToDo)
+	Write-Host [(Get-Date).ToLongTimeString()] "Number of update found : " $nbUpdateToDo
 	if ($nbUpdateToDo -gt 0)
 	{ 
-		Write-Warning "Update is running..."
+		Write-Host [(Get-Date).ToLongTimeString()] "Update is running"
 		foreach ($items in $update) 
 		{
-			Write-Warning ("--- Start time " + (Get-Date).ToLongTimeString())
+			Write-Host [(Get-Date).ToLongTimeString()] "Start time"
 			try 
 			{
-				Write-Warning "---Start installation ---" 
-				Write-Warning ($items | Select-Object -Property KB, Title)
+				Write-Host [(Get-Date).ToLongTimeString()] "Start installation" 
+				Write-Host [(Get-Date).ToLongTimeString()] ($items | Select-Object -Property KB, Title)
 				Install-WindowsUpdate -AcceptAll -install
-				Write-Warning ("--- Installation finished : " + ($items | Select-Object -Property KB))    
-				Write-Warning (($nbUpdateToDo -eq 1) ? "--- Update is finished ---" : "--- Update are finished ---")
+				Write-Host [(Get-Date).ToLongTimeString()] ("Installation finished : " + ($items | Select-Object -Property KB))    
+				Write-Host [(Get-Date).ToLongTimeString()] (($nbUpdateToDo -eq 1) ? "Update is finished" : "Update are finished")
 			}
 			catch 
 			{
 				Write-Error $_.Exception.Message
 			}
-			Write-Warning ("--- End time " + (Get-Date).ToLongTimeString())
+			Write-Host [(Get-Date).ToLongTimeString()] "End time"
 		}
     
 		$status = Get-WURebootStatus
@@ -35,12 +35,12 @@ function Update
 			}
 			else
 			{ 
-				Write-Warning "--- Not necessary to restart computer"; 
+				Write-Host [(Get-Date).ToLongTimeString()] "Not necessary to restart computer"; 
 			}   
 	}
 	else 
 	{ 
-		Write-Warning "--- No update ---" 
-		Write-Warning ("--- End time " + (Get-Date).ToLongTimeString())
+		Write-Host [(Get-Date).ToLongTimeString()] "No update" 
+		Write-Host [(Get-Date).ToLongTimeString()] "End time "
 	}
 }

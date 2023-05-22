@@ -4,16 +4,15 @@
 ##################################################
 
 $start = Get-Date
-Write-Warning ("--- Time start of program : " + $start.ToLongTimeString()) 
+Write-Host [(Get-Date).ToLongTimeString()] "Time start of program" 
 
 $dossier = "C:\users\manipulator\Desktop\Script_PS\PWS_v7"
 #importation de la fonction TestConnection
+Write-Host [(Get-Date).ToLongTimeString()] "Test internet connection" 
 $rstConnection = pwsh -command "& {. $dossier\TestConnection.ps1;TestConnection }"  
 
-
 #Test de la connection
-
-($rstConnection) ? "Connection succeeded with internet" : "Connection failed - enable to update"
+Write-Host [(Get-Date).ToLongTimeString()]  (($rstConnection -eq "True") ? "Connection succeeded with internet" : "Connection failed - enable to update")
 
 #Si connection réussi - mettre à jour
 switch($rstConnection)
@@ -23,10 +22,10 @@ switch($rstConnection)
 
     }
     $False{
-        Write-Error "Internet connection impossible - update failed"
+        Write-Host [(Get-Date).ToLongTimeString()]  "Internet connection impossible - update failed"
     }
 }
 $end = Get-Date
-Write-Warning ("--- End time of program: " + $end.ToLongTimeString())
+Write-Host [(Get-Date).ToLongTimeString()]  "End time of program"
 $total = $end - $start
 Write-Warning ("--- " + $total.Hours.ToString()+" h "+$total.Minutes.ToString()+" m "+$total.Seconds.ToString()+" s ")
