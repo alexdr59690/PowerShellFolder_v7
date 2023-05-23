@@ -11,11 +11,10 @@ function Update
 		Write-Host [(Get-Date).ToLongTimeString()] "Update is running"
 		foreach ($items in $update) 
 		{
-			Write-Host [(Get-Date).ToLongTimeString()] "Start time"
 			try 
 			{
 				Write-Host [(Get-Date).ToLongTimeString()] "Start installation" 
-				Write-Host [(Get-Date).ToLongTimeString()] ($items | Select-Object -Property KB, Title)
+				Write-Host [(Get-Date).ToLongTimeString()] ($items | Select-Object -Property Title)
 				Install-WindowsUpdate -AcceptAll -install
 				Write-Host [(Get-Date).ToLongTimeString()] ("Installation finished : " + ($items | Select-Object -Property KB))    
 				Write-Host [(Get-Date).ToLongTimeString()] (($nbUpdateToDo -eq 1) ? "Update is finished" : "Update are finished")

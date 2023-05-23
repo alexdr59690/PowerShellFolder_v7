@@ -1,7 +1,5 @@
 function TestConnection
 {
-    Write-Host [(Get-Date).ToLongTimeString()]
-    $TestConnection = Test-NetConnection -TraceRoute www.google.fr
-    Write-Host [(Get-Date).ToLongTimeString()]
+    $TestConnection = Test-NetConnection -Hops 2 -TraceRoute www.google.fr
     return $TestConnection.PingSucceeded
 }
